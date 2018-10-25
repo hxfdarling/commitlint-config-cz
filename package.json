@@ -1,5 +1,5 @@
 {
-  "name": "commitlint-config-cz",
+  "name": "@tencent/commitlint-config-cz",
   "version": "0.10.1",
   "description": "commitlint sharable configuration files",
   "keywords": [
