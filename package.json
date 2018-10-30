@@ -1,6 +1,6 @@
 {
-  "name": "@tencent/commitlint-config-cz",
-  "version": "0.10.2",
+  "name": "commitlint-config-czx",
+  "version": "0.0.1",
   "description": "commitlint sharable configuration files",
   "keywords": [
     "git",
@@ -43,7 +43,25 @@
     "release:patch": "standard-version --sign --release-as patch --commit-all",
     "release:minor": "standard-version --sign --release-as minor --commit-all",
     "release:major": "standard-version --sign --release-as major --commit-all",
-    "release": "standard-version --sign --commit-all"
+    "release": "standard-version --sign --commit-all",
+    "lint": "eslint --fix {lib,test}/**/*.js"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{json,css,scss,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{jsx,js}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
   },
   "dependencies": {
     "app-root-path": "~2.1.0",
@@ -52,10 +70,19 @@
   "devDependencies": {
     "@commitlint/cli": "~7.2.0",
     "coveralls": "~3.0.2",
+    "eslint": "^5.8.0",
+    "eslint-config-zman": "^0.0.7",
+    "eslint-plugin-babel": "^5.2.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "husky": "^1.1.2",
     "intelli-espower-loader": "~1.0.1",
+    "lint-staged": "^7.3.0",
     "mocha": "~5.2.0",
     "nyc": "~13.0.1",
     "power-assert": "~1.6.1",
+    "prettier": "^1.14.3",
     "standard-version": "~4.4.0"
   },
   "peerDependencies": {
